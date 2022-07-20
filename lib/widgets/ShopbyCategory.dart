@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:purplestarmd/screens/profile/category/Concentrates.dart';
 
-class ShopModel{
+class ShopModel {
   final String title;
   final String image;
-  ShopModel( {required this.title, required this.image, } );
+
+  ShopModel({
+    required this.title,
+    required this.image,
+  });
 }
 
 List<ShopModel> categories = <ShopModel>[
@@ -31,22 +36,42 @@ class ShopbyCategory extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: Colors.black54,
-                    offset: Offset(0.0, 0.75)
-                )
-              ]
-            ),
+                shape: BoxShape.circle,
+                boxShadow: <BoxShadow>[
+                  BoxShadow(color: Colors.black54, offset: Offset(0.0, 0.75))
+                ]),
             child: CircleAvatar(
               radius: 30,
               backgroundImage: AssetImage(shopModel.image),
+              child: InkWell(
+                onTap: () {
+                    if (shopModel.title == 'Concentrates') {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Concentrates(
+                                  pageTitle: shopModel.title)));
+                      print('succesed');
+                    } else if (shopModel.title == 'Edibles') {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Concentrates(
+                                  pageTitle: shopModel.title)));
+                      print('succesed');
+                    }
+                },
+              ),
             ),
           ),
-          
-          SizedBox(height: 15,),
-          Text(shopModel.title, style: TextStyle(fontFamily: 'Poppins', fontSize: 15, fontWeight: FontWeight.bold)),
+          SizedBox(
+            height: 15,
+          ),
+          Text(shopModel.title,
+              style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold)),
         ],
       ),
     );
